@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# put your sendgrid api key here
+export SENDGRID_API_KEY='...'
+
+FROM_NAME='Mirco Bertelli'
+FROM_ADDR='mirocbe87@no-reply.com'
+SUBJECT='corrente ellettrica'
+MESSAGE="Ore $(date +%H:%M:%S\ %Z) del $(date +%d/%m/%Y): la corrente è saltata pochi secondi fa. UPS in modalità batteria."
+
+# comma separated list of email recipients here
+TO_ADDR="...,...,..."
+
+send-email --from-name "$FROM_NAME" \
+	   --from-addr "$FROM_ADDR" \
+	   -s "$SUBJECT" \
+	   -m "$MESSAGE" \
+	   -r "$TO_ADDR"
+
+exit 0
+
